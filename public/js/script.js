@@ -79,6 +79,45 @@ $('#fileRowContainer').on('click', '.addNestedFolder', e => {
 
 /*********FUNCTIONS*************/
 
+function getNestedFiles(id) {
+	let url = `/api/folders/${id}/items`;
+	$.ajax({
+		url: url,
+		type: 'GET',
+		dataType: 'JSON'
+	}).then(data => {
+		let $fileRow = $(`.fileRow[data-id=${id}]`);
+		$fileRow.append(`<div id="fileRowContainer${id}" data-id="${id}"></div>`);
+		data.forEach(file => {
+			let fileFolderClass = file.type.toLowerCase();
+			let fileSize = '';
+			if (file.size) {
+				fileSize = file.size;
+			}
+			let fileRowHtml = `
+				<div data-id="${file._id}" 
+					data-parent="${file.parentId}" 
+					class="fileRow ${fileFolderClass}">
+					<div class="fileName">
+						<div class="fileNameText">
+							${file.name}
+							<span class="addNestedFolder">
+								+ Add
+							</span>
+						</div>
+					</div>
+					<div class="fileSize">
+						${fileSize}
+					</div>
+					<div class="fileLastMod">
+						${file.dateModified}
+					</div>
+				</div>`;
+			$(`#fileRowContainer${id}`).append(fileRowHtml);
+		}); //end forEach
+	}); //end then
+}
+
 function getRootFiles() {
 	$.ajax({
 		url: '/api/files',
@@ -122,5 +161,7 @@ function getRootFiles() {
 $(document).ready(function() {
 
 	getRootFiles();
+
+	getNestedFiles("59c03c84ad0a9812f2faee6b"); //BE SURE TO COMMENT THIS OUT!
 
 })
