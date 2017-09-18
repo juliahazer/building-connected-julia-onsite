@@ -1,0 +1,44 @@
+body {
+	margin: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#header {
+	background-color: green;
+	padding: 1px;
+	color: white;
+}
+
+#fileHeader {
+	padding-top: 20px;
+}
+
+#fileNameHeader, 
+#fileSizeHeader, 
+#fileLastModHeader {
+	display: inline-block;
+}
+
+#addFolder, #addFile {
+	background-color: orange;
+	width: 80px;
+	color: white;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-left: 10px;
+	text-align: center;
+	border-radius: 10px;
+	padding: 2px;
+}
+
+#fileNameHeader {
+	width: 60%;
+}
+
+#fileSizeHeader {
+	width: 10%;
+}
+
+#fileLastModHeader {
+	width: 20%;
+}
