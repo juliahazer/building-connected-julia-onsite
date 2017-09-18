@@ -23,13 +23,20 @@ body {
 
 #fileHeader {
 	padding-top: 20px;
+	background-color: gray;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	margin-top: 10px;
 }
 
 #fileNameHeader, 
 #fileSizeHeader, 
 #fileLastModHeader,
 #addFolder, 
-#addFile {
+#addFile,
+.fileName,
+.fileSize,
+.fileLastMod {
 	display: inline-block;
 }
 
@@ -46,15 +53,30 @@ body {
 	padding: 2px;
 }
 
-#fileNameHeader {
+#fileNameHeader,
+.fileName {
 	width: 60%;
 }
 
-#fileSizeHeader {
+#fileSizeHeader,
+.fileSize {
 	width: 10%;
 }
 
-#fileLastModHeader {
+#fileLastModHeader,
+.fileLastMod {
 	width: 20%;
+}
+
+.fileRow {
+	padding: 10px;
+	border-bottom: 1px solid gray;
+}
+
+.addNestedFolder {
+	background-color: gray;
+	padding: 2px;
+	border-radius: 2px;
+	font-size: .7em;
 }
 
