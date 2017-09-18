@@ -32,7 +32,6 @@ $('#fileRowContainer').on('submit', '#addNestedFolderForm', e => {
 	e.preventDefault();
 	let folderName = $('#nestedFolderNameInput').val();
 	let $currFileRow = $(e.target).closest('.fileRow')
-	// let fileParentId = $currFileRow.attr('data-parent');
 	let fileId = $currFileRow.attr('data-id');
 
 	let url = '/api/folders/?parentId=' + fileId;
