@@ -16,8 +16,28 @@
 </div>
 
 <div id="addFilesContainer">
-	<div id="addFolder">New Folder</div>
-	<div id="addFile">Upload File</div>
+	<div id="addFolderContainer">
+		<div id="addFolder">
+			New Folder
+		</div>
+		<div id="addFolderFormDiv" class="hide">
+			<form id="addFolderForm">
+				<input type="text" name="folderNameInput" id="folderNameInput"></input>
+				<input type="submit" value="Add Folder" />
+			</form>
+		</div>
+	</div>
+	<div id="addFileContainer">
+		<div id="addFile">
+			Upload File
+		</div>
+		<div id="addFileFormDiv" class="hide">
+			<form id="addFileForm">
+				<input type="file" name="fileInput" id="fileInput"></input>
+				<input type="submit" value="Upload File" />
+			</form>
+		</div>
+	</div>
 </div>
 
 <div id="fileContainer">
