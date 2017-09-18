@@ -29,22 +29,52 @@ $('#addFolderForm').on('submit', e => {
 
 });
 
+$('#fileRowContainer').on('submit', '#addNestedFolderForm', e => {
+	e.preventDefault();
+	let folderName = $('#nestedFolderNameInput').val();
+	let $currFileRow = $(e.target).closest('.fileRow')
+	// let fileParentId = $currFileRow.attr('data-parent');
+	let fileId = $currFileRow.attr('data-id');
+
+	let url = '/api/folders/?parentId=' + fileId;
+	
+	$.ajax({
+		url: url,
+		type: 'POST',
+		data: JSON.stringify({
+			"name": folderName
+		}), 
+		dataType: 'json',
+		contentType: 'application/json'
+	}).then(data => {
+		console.log(data);
+		$('.addNestedFolderDiv').remove();
+		//first empty the container...
+		//$('#fileRowContainer').empty();
+		//then re-write root folder rows
+		//getRootFiles();
+	})
+
+});
+
+//show/hide form to add nested form on click for +Add
 $('#fileRowContainer').on('click', '.addNestedFolder', e => {
 	let $currFileName = $(e.target).closest('.fileName');
 	let $currFileRow = $(e.target).closest('.fileRow')
 	let fileId = $currFileRow.attr('data-id');
 	let fileParentId = $currFileRow.attr('data-parent');
-	let $addNestedFolderDiv = $(e.target).parent().next();
-	$addNestedFolderDiv.toggleClass('show-block hide');
-	// let subFolderFormHtml = `
-	// 	<div class="addNestedFolderDiv">
-	// 		<form id="addNestedFolderForm">
-	// 			<input type="text" name="nestedFolderNameInput" id="nestedFolderNameInput"></input>
-	// 			<input type="submit" value="Add Folder" />
-	// 		</form>
-	// 	</div>
-	// `;
-	// $currFileName.append(subFolderFormHtml);
+	if ($currFileName.has('.addNestedFolderDiv').length === 0) {
+		$('.addNestedFolderDiv').remove();
+		let html = `<div class="addNestedFolderDiv">
+				<form id="addNestedFolderForm">
+					<input type="text" name="nestedFolderNameInput" id="nestedFolderNameInput"></input>
+					<input type="submit" value="Add Folder" />
+				</form>
+			</div>`;
+		$currFileName.append(html);
+	} else {
+		$('.addNestedFolderDiv').remove();
+	}
 });
 
 /*********FUNCTIONS*************/
@@ -72,12 +102,6 @@ function getRootFiles() {
 							<span class="addNestedFolder">
 								+ Add
 							</span>
-						</div>
-						<div class="addNestedFolderDiv hide">
-							<form id="addNestedFolderForm">
-								<input type="text" name="nestedFolderNameInput" id="nestedFolderNameInput"></input>
-								<input type="submit" value="Add Folder" />
-							</form>
 						</div>
 					</div>
 					<div class="fileSize">
