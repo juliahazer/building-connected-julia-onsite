@@ -73,6 +73,11 @@ body {
 	border-top: 1px solid gray;
 }
 
+.folder .fileName:hover {
+	background-color: lightblue;
+	cursor: pointer;
+}
+
 .addNestedFolder {
 	background-color: gray;
 	padding: 2px;
