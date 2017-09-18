@@ -78,5 +78,10 @@ body {
 	padding: 2px;
 	border-radius: 2px;
 	font-size: .7em;
+	cursor: pointer;
+}
+
+.addNestedFolderDiv {
+	margin-top: 10px;
 }
 
