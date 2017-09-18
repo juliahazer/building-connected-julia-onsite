@@ -31,7 +31,7 @@ $('#addFolderForm').on('submit', e => {
 $('#fileRowContainer').on('submit', '#addNestedFolderForm', e => {
 	e.preventDefault();
 	let folderName = $('#nestedFolderNameInput').val();
-	let $currFileRow = $(e.target).closest('.fileRow')
+	let $currFileRow = $(e.target).closest('.fileRow');
 	let fileId = $currFileRow.attr('data-id');
 
 	let url = '/api/folders/?parentId=' + fileId;
@@ -45,9 +45,9 @@ $('#fileRowContainer').on('submit', '#addNestedFolderForm', e => {
 		dataType: 'json',
 		contentType: 'application/json'
 	}).then(data => {
-		console.log('here');
-		console.log(data);
 		$('.addNestedFolderDiv').remove();
+		$(`#fileRowContainer${fileId}`).remove();
+		getNestedFiles(fileId);
 	})
 
 });
@@ -78,7 +78,6 @@ $('#fileRowContainer').on('click', '.folder .fileName', e => {
 	let fileId = $currFileRow.attr('data-id');
 	//has the data already been retrieved/loaded as html...
 	if ($currFileRow.attr('data-subdataloaded') === "true") {
-		console.log('here');
 		$(`#fileRowContainer${fileId}`).toggleClass('show-block hide');
 	} else {
 		getNestedFiles(fileId);
